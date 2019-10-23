@@ -28,6 +28,7 @@ from sklearn import tree
 ####
 
 @app.route('/')
+@app.route('/dashboard')
 def homepage():
     return render_template('index.html')
 
@@ -41,7 +42,7 @@ def show_gener_graph():
     df = pd.read_csv('prescription_data.csv', sep=',', low_memory=False)
     #graphing    
     fig = plt.figure(figsize=(10,10))
-    plt.title('gender',fontdict={'fontsize':'30'})
+    #plt.title('gender',fontdict={'fontsize':'30'})
     ax = sns.countplot(y='gender',data= df,palette='husl')
     ax.set(xlabel='Counts', ylabel='')
     plt.setp(ax.get_xticklabels(), rotation=45, horizontalalignment='right')
@@ -49,6 +50,7 @@ def show_gener_graph():
     #plt.show()
     #saving graphs as png
     fig.savefig('static/gender.png')
+    
     return render_template('gender.html')
 
 
@@ -59,7 +61,7 @@ def show_settlement_graph():
     df = pd.read_csv('prescription_data.csv', sep=',', low_memory=False)
     #graphing     
     fig = plt.figure(figsize=(10,10))
-    plt.title('settlement_type',fontdict={'fontsize':'30'})
+    #plt.title('settlement_type',fontdict={'fontsize':'30'})
     ax = sns.countplot(y='settlement_type',data= df,palette='husl')
     ax.set(xlabel='Counts', ylabel='')
     plt.setp(ax.get_xticklabels(), rotation=45, horizontalalignment='right')
@@ -76,7 +78,7 @@ def show_specialty_graph():
     df = pd.read_csv('prescription_data.csv', sep=',', low_memory=False)
     #graphing     
     fig = plt.figure(figsize=(10,10))
-    plt.title('specialty',fontdict={'fontsize':'30'})
+    #plt.title('specialty',fontdict={'fontsize':'30'})
     ax = sns.countplot(y='specialty',data= df,palette='Spectral')
     ax.set(xlabel='Counts', ylabel = '')
     plt.setp(ax.get_xticklabels(), rotation=45, horizontalalignment='right')
@@ -85,6 +87,8 @@ def show_specialty_graph():
     #saving graphs as png
     fig.savefig('static/specialty.png')
     return render_template('specialty.html')
+
+
 
 
 
